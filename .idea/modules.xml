@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RenShiXiTong.iml" filepath="$PROJECT_DIR$/RenShiXiTong.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShowSerchMessage/ShowSerchMessage.iml" filepath="$PROJECT_DIR$/ShowSerchMessage/ShowSerchMessage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SocketTest/SocketTest.iml" filepath="$PROJECT_DIR$/SocketTest/SocketTest.iml" />
+    </modules>
+  </component>
+</project>

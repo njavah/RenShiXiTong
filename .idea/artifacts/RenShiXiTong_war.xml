@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="RenShiXiTong:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="RenShiXiTong-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="RenShiXiTong:war exploded" />
+    </root>
+  </artifact>
+</component>

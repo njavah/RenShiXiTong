@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ShowSerchMessage:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ShowSerchMessage_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ShowSerchMessage/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ShowSerchMessage" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

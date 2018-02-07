@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DeptMapper">
+    <insert id="adddept" parameterType="entity.Dept">
+        INSERT INTO dept(deptname,deptdescription)
+        VALUES (#{deptname},#{deptdescription})
+    </insert>
+    <resultMap id="deptMap" type="entity.Dept">
+        <result column="deptname" property="deptname"/>
+        <result column="deptdescription" property="deptdescription"/>
+    </resultMap>
+    <select id="querydept" parameterType="entity.Dept" resultMap="deptMap">
+        SELECT deptname,deptdescription FROM dept
+        <where>
+            <if test="deptname != null and !&quot;&quot;.equals(deptname.trim())">
+                and deptname like #{deptname}
+            </if>
+
+        </where>
+    </select>
+</mapper>
