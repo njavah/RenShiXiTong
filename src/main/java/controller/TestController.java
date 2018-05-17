@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -24,7 +25,9 @@ public class TestController {
         return "This is hou duan kongzhiqi";
     }
     @RequestMapping(value = "/dialog")
-    public String dialog(){
-        return "dialog";
+    public void dialog(HttpServletResponse response)throws IOException{
+      //  response.setCharacterEncoding("utf-8");
+        System.out.println("Controller方法中");
+       response.getWriter().write("这是requestMapping注解的返回类型为void的dialog方法");
     }
 }

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 public class Test {
     public static void main(String[] args) {
         try {
+
             String url = "jdbc:sqlserver://localhost:1433; DatabaseName=UInformation";
             String username = "sa";
             String password = "n12345";

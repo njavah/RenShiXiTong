@@ -2,6 +2,7 @@ package controller;
 
 import entity.LoginUser;
 import jdbcTest.jdbctest;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,13 +39,16 @@ public class LoginController {
     @RequestMapping(value = "/login")
     public ModelAndView login(@RequestParam String username, @RequestParam String password,
                               ModelAndView mv, HttpSession session){
+        Logger log = Logger.getLogger(LoginController.class);
         LoginUser user = new LoginUser();
         user.setPassword(password);
         user.setUsername(username);
         System.out.println("username:"+username);
         System.out.println("passoword:"+password);
-        jdbctest jdbctest1 = new jdbctest();
-        List<LoginUser> loginUserList = jdbctest1.LoginByUser(user);
+       // jdbctest jdbctest1 = new jdbctest();
+        System.out.println(loginUserServiceImpl);
+        List<LoginUser> loginUserList = loginUserServiceImpl.LoginByUser(user);
+        System.out.println(loginUserList.size());
         if(loginUserList!=null&&loginUserList.size()>=1){
             mv.setViewName("QQ");
             session.setAttribute("loginuser",username);

@@ -21,4 +21,17 @@
         SET context=#{context}
         WHERE (name1 =#{name1} AND name2 =#{name2} ) OR (name1 =#{name2} AND name2 =#{name1})
     </update>
+
+    <select id="getPersonByName" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT username FROM loginuser WHERE username = #{searchName}
+    </select>
+    <insert id="addFriendByName" parameterType="java.util.HashMap">
+        INSERT INTO  qqperson  VALUES (#{searchName1},#{searchName2})
+    </insert>
+    <insert id="addQqMessage"  parameterType="java.util.HashMap">
+        INSERT INTO qqmessage VALUES (#{name1},#{name2},"");
+    </insert>
+    <insert id="register" parameterType="java.util.HashMap">
+        INSERT INTO loginuser VALUES (#{username},#{password},#{realname})
+    </insert>
 </mapper>

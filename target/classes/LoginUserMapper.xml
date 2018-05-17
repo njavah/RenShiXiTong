@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.LoginUserMapper">
+
+    <resultMap id="LoginUserMap" type="entity.LoginUser">
+        <result property="username" column="username" />
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="LoginUserList" resultMap="LoginUserMap" parameterType="entity.LoginUser">
+        SELECT username,password,name FROM loginuser
+        <where>
+            <if test="username != null and !&quot;&quot;.equals(username.trim())">
+                and username like #{username}
+            </if>
+            <if test="name != null and !&quot;&quot;.equals(name.trim())">
+                and name like #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="LoginByUser" resultMap="LoginUserMap" parameterType="entity.LoginUser">
+        SELECT * FROM loginuser
+        <where>
+            <if test="username != null and !&quot;&quot;.equals(username.trim())">
+                and username = #{username}
+            </if>
+            <if test="password != null and !&quot;&quot;.equals(password.trim())">
+                and password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <insert id="AddLoginUser" parameterType="entity.LoginUser">
+        INSERT INTO loginuser(username,password,name)
+        VALUES (#{username},#{password},#{name})
+    </insert>
+
+</mapper>

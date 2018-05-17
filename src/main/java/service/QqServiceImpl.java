@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class QqServiceImpl implements QqService {
+public class QqServiceImpl implements   QqService {
     @Autowired
     private QqMapper qqMapper;
     public String queryByName(String name1, String name2) {
@@ -32,4 +32,31 @@ public class QqServiceImpl implements QqService {
         map.put("context",context);
         qqMapper.udatecontext(map);
     }
+
+    public String getPersonByName(String searchName) {
+        System.out.println("进入service层查询");
+        return qqMapper.getPersonByName(searchName);
+    }
+
+    public void addFriendByName(String searchName1,String searchName2) {
+        HashMap<String,String> hashMap = new HashMap<String, String>();
+        hashMap.put("searchName1",searchName1);
+        hashMap.put("searchName2",searchName2);
+        qqMapper.addFriendByName(hashMap);
+    }
+    public void addQqMessage(String name1,String name2){
+        HashMap<String,String> hashMap = new HashMap<String, String>();
+        hashMap.put("name1",name1);
+        hashMap.put("name2",name2);
+        qqMapper.addQqMessage(hashMap);
+    }
+
+    public void register(String username, String password,String realname) {
+        HashMap<String,String> hashMap = new HashMap<String, String>();
+        hashMap.put("username",username);
+        hashMap.put("password",password);
+        hashMap.put("realname",realname);
+        qqMapper.register(hashMap);
+    }
+
 }
