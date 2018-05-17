@@ -39,9 +39,7 @@ public class BaseTest {
 
     @Test
     public void test_1(){
-       String s = "fsdfs";
-       String result ="";
-       result+=s;
+       JSONArray jsonArray = new JSONArray();
 
     }
 
