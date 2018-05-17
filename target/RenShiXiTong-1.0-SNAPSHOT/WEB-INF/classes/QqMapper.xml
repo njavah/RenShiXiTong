@@ -31,4 +31,7 @@
     <insert id="addQqMessage"  parameterType="java.util.HashMap">
         INSERT INTO qqmessage VALUES (#{name1},#{name2},"");
     </insert>
+    <insert id="register" parameterType="java.util.HashMap">
+        INSERT INTO loginuser VALUES (#{username},#{password},#{realname})
+    </insert>
 </mapper>

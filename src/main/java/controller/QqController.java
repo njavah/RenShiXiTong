@@ -167,6 +167,6 @@ public class QqController {
     public ModelAndView register(String username,String password,String realName){
         ModelAndView modelAndView = new ModelAndView();
         qqServiceImpl.register(username,password,realName);
-
+        return modelAndView;
     }
 }

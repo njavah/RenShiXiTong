@@ -206,6 +206,10 @@ function nowNotReadMessage() {
             var obj = JSON.parse(data);
             alert(obj);
             alert(obj.namelist[0].name);
+            var list = $("#myul").children();
+            for(var i=0;i<list.length;i++){
+                alert(list.eq(i).text());
+            }
         },
         error: function () {
             alert("失败");
