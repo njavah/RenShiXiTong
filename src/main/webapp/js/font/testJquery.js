@@ -17,3 +17,11 @@ function testJson(){
    alert(obj.namelist.length);
 
 }
+
+function test() {
+    alert("进入了test");
+    setInterval(aaa,1000);
+}
+function aaa() {
+    alert("test:");
+}

@@ -2,6 +2,7 @@ var oldstr = "";
 var oldstr1 = "";
 var oldn ;
 function getmessageOne(str,str1) {
+    $("#"+str1).children().eq(0).text(str1);
     if(str!=oldstr||str1!=oldstr1){
         if(oldstr!=""){
             alert("暂停了oldn="+oldn)
@@ -10,18 +11,22 @@ function getmessageOne(str,str1) {
     }
     oldstr = str;
     oldstr1 = str1;
-    oldn = setInterval(getmessage(str,str1),3000);
-    alert(oldn);
+    oldn = setInterval(getmessage,1000,str,str1);
+    // alert(oldn);
 }
+
+
 function getmessage(str,str1) {
+  //  alert("getmessage:"+str+"  "+str1);
     $.ajax({
         url:"/QQ/getmessage",
         success:function (data) {
-            /*alert(data);*/
+          //  alert(data);
 
             $("#textarea").val(data);
             $("#loginuserpattern").val(str1);
            /* alert($("#loginuserpattern").val());*/
+
         },
         error:function () {
             alert("错误");
@@ -43,7 +48,7 @@ function showperson(str) {
                //     alert(s[i]);
                     s[i] = s[i].trim();
                     var ss = 'javascript:getmessageOne('+"'"+str+"'"+','+"'"+s[i]+"'"+')';
-                    $("#myul").append("<li><a href="+ss+">"+s[i]+"</a></li>");
+                    $("#myul").append("<li id="+s[i]+"><a href="+ss+">"+s[i]+"</a></li>");
                 }
                 /*            $("#textarea").val(data);*/
             },
@@ -195,20 +200,27 @@ function addPerson() {
 
 
 }
-
+window.onunload=function () {
+    setInterval(nowNotReadMessage,2000);
+}
 function nowNotReadMessage() {
     var loginName = $("#loginuser").val();
+    var loginuserpattern = $("#loginuserpattern").val();
     $.ajax({
         url: "/QQ/nowNotReadMessage",
         success: function (data) {
 
-            alert(data);
+           // alert(data);
             var obj = JSON.parse(data);
-            alert(obj);
-            alert(obj.namelist[0].name);
+           // alert(obj);
+           // alert(obj.namelist[0].name);
             var list = $("#myul").children();
-            for(var i=0;i<list.length;i++){
-                alert(list.eq(i).text());
+            for(var i=0;i<obj.namelist.length;i++){
+                var text = obj.namelist[i].name;
+                if(text!=loginuserpattern){
+                   // $("#"+text).text(text+"  "+obj.namelist[i].num);
+                    $("#"+text).children().eq(0).text(text+"   "+obj.namelist[i].num);
+                }
             }
         },
         error: function () {

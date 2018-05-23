@@ -16,11 +16,11 @@
             <tbody>
             <tr>
                 <td>用户名:</td>
-                <td><input type="text" id="registerName"/></td>
+                <td><input type="text" id="registerName" name="username"/></td>
             </tr>
             <tr>
                 <td>密码:</td>
-                <td><input type="password" id="registerPassword"/></td>
+                <td><input type="password" id="registerPassword" name="password"/></td>
             </tr>
             <tr>
                 <td>确认密码:</td>
@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td>真实姓名:</td>
-                <td><input type="text" id="realName"/></td>
+                <td><input type="text" id="realName" name="realName"/></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="注册"/></td>

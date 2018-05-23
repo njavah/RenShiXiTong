@@ -9,6 +9,9 @@ public class LoginUser {
     //姓名
     private String name;
 
+    //测试数据，请及时删除
+
+
     public String getName() {
         return name;
     }
@@ -41,4 +44,8 @@ public class LoginUser {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+
+
 }

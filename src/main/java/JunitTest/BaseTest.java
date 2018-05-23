@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -39,11 +40,18 @@ public class BaseTest {
 
     @Test
     public void test_1(){
-       JSONArray jsonArray = new JSONArray();
-
+       HashMap<Integer,Integer> hashMap = new HashMap<Integer, Integer>();
+       hashMap.put(1,1);
+       hashMap.put(2,2);
+       System.out.println(hashMap.size());
+       HashMap<Integer,Integer> hashMap1 = new HashMap<Integer, Integer>(hashMap);
+       hashMap.remove(1);
+        System.out.println(hashMap.size());
+        System.out.println(hashMap1.size());
     }
 
     public static void main(String[] args) {
+
 
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import service.QqService;
@@ -35,14 +36,12 @@ public class QqController {
    // private NowFriend nowTimeFriend;
     @RequestMapping(value = "/getmessage",produces = "text/html;charset=UTF-8")
     @ResponseBody
-    //username1:登陆用户 username2:点击用户
     public String getmessage(String username1, String username2, HttpServletResponse response
     , HttpSession session) throws UnsupportedEncodingException {
 
         session.setAttribute("loginuserpattern",username2);
         NowFriend nowFriend = new NowFriend(username1,username2);
 
-      //  nowTimeFriend = new NowFriend(nowFriend.getUserName1(),nowFriend.getUserName2());
         if(notReadNumber.containsKey(nowFriend)){
             nowFriend = getFriend(nowFriend);
             if(nowFriend.getUserCount()==0){
@@ -60,8 +59,17 @@ public class QqController {
             nowFriend.setUserCount(1);
             nowFriend.setResult(result);
         }
+        clearNumber(username1,username2);
+      //  System.out.println("getmessage:"+result);
+         return result;
+    }
 
-        return result;
+    private void clearNumber(String username1,String username2){
+        NowFriend nowFriend = new NowFriend(username2,username1);
+        if(notReadNumber.containsKey(nowFriend)){
+            nowFriend = getFriend(nowFriend);
+            notReadNumber.put(nowFriend,0);
+        }
     }
 
     public NowFriend getFriend(NowFriend nowFriend){
@@ -74,6 +82,7 @@ public class QqController {
                 return result;
             }
         }
+
         return result;
     }
 
@@ -100,6 +109,7 @@ public class QqController {
         qqServiceImpl.updatecontext(name1,name2,context);
         result = context;
         NowFriend nowFriend = new NowFriend(name1,name2);
+        NowFriend nowFriend1 = new NowFriend(name2,name1);
         if(notReadNumber.containsKey(nowFriend)){
             nowFriend = getFriend(nowFriend);
             nowFriend.setResult(result);
@@ -108,6 +118,15 @@ public class QqController {
         else{
             notReadNumber.put(nowFriend,1);
             nowFriend.setResult(result);
+        }
+        nowFriend1 = getFriend(nowFriend1);
+        if(nowFriend1!=null){
+            nowFriend1.setResult(result);
+            notReadNumber.put(nowFriend1,notReadNumber.get(nowFriend1));
+        }else{
+            nowFriend1 = new NowFriend(name2,name1);
+            nowFriend1.setResult(result);
+            notReadNumber.put(nowFriend1,0);
         }
         System.out.println("结束");
 
@@ -164,9 +183,12 @@ public class QqController {
     }
 
     @RequestMapping(value ="/register")
-    public ModelAndView register(String username,String password,String realName){
+    public ModelAndView register(  String username,  String password,  String realName){
+        System.out.println(username+"  "+password+"  "+password);
         ModelAndView modelAndView = new ModelAndView();
-        qqServiceImpl.register(username,password,realName);
+      //  qqServiceImpl.register(username,password,realName);
+
         return modelAndView;
+
     }
 }

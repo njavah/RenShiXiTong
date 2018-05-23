@@ -13,8 +13,8 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="<%=basepath%>/js/common/jquery-1.8.0.min.js?v=1.0"></script>
-    <script src="<%=basepath%>/js/font/testJquery.js?v=1.0"></script>
+    <script src="<%=basepath%>/js/common/jquery-1.8.0.min.js"></script>
+    <script src="<%=basepath%>/js/font/testJquery.js"></script>
 </head>
 <body>
     <table id="myTable" border="3" >
@@ -38,6 +38,7 @@
 
     </table>
     <input type="button" id="myButton" value="点击遍历" onclick="testJson()" />
+    <input type="button" id="myButton" value="点击测试" onclick="test()" />
 <div id="myDiv">
 
 </div>
